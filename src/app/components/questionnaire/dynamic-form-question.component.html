@@ -1,0 +1,22 @@
+<div [formGroup]="form">
+    <label [attr.for]="question.key">{{question.label}}</label>
+
+    <div style="padding-bottom: 40px;" [ngSwitch]="question.controlType">
+
+        <input *ngSwitchCase="'date'" [type]="question.type" [id]="question.key" [formControlName]="question.key">
+
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+        <div *ngSwitchCase="'radio'">
+            <label *ngFor="let opt of question.options"> {{opt.key}} 
+               <input [type]="question.type" [name]="question.key" [formControlName]="question.key" [value]="opt.value">
+             </label>
+        </div>
+
+        <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+          <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+       </select>
+
+
+        <div class="errorMessage" *ngIf="!isValid"> Filed is required</div>
+
+    </div>

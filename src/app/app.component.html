@@ -1,0 +1,4 @@
+<app-navbar></app-navbar>
+<app-dynamic-form *ngIf="isShow" [questions]="questions$ | async"></app-dynamic-form>
+<router-outlet class="outlet"></router-outlet>
+<app-footer></app-footer>
